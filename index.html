@@ -5,30 +5,39 @@
   <title></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://unpkg.com/vue@2.3.4"></script>
+  <script src="https://unpkg.com/vue@2.4.2"></script>
 </head>
 
 <body>
   <div id="root">
     <ul>
+      <!-- v-text inject the name value into the list item -->
       <li v-for="name in names" v-text="name"></li>
     </ul>
 
     <input id="input" type="text" v-model="newName">
 
     <!--Reference Method addName must be in the methods key-->
+    <!-- v-on:click="addName" -->
     <button @click="addName" >Add Name</button>
+
+    <div>The name to be added is: <span style="font-weight:bold;font-size: 3rem">{{ newName }}</span></div>
 
   </div>
 
 
 
   <script>
+    // we wrap the vue in variable app so we can access it into the console with global variable app - debugging
    var app = new Vue({
       el: '#root',
       data: {
         newName: '',
         names: ['Joe', 'Mary', 'Jane', 'Jack']
+      },
+      mounted() {
+        // do this when app is finished loading
+        // alert("app done loading");
       },
       // ALL CUSTOM METHODS GO UNDER THE METHODS KEY
       methods: {
